@@ -190,19 +190,19 @@ This project implements a Method of Procedure (MOP) generator for data center op
 ### API Logic
 Here's how the flow of request/API call/UI rendering should go in the way I implemented it:
 
-Browser URL: /transformer-23a  
+Browser URL: `/transformer-23a`  
     │  
     ▼  
-SvelteKit Route Handler (+page.server.ts)  
+SvelteKit Route Handler (`+page.server.ts`)  
     │  
     ▼  
-Client-side getMopById(id)  
-    │  └─ Makes HTTP request to /api/mops/transformer-23a  
+Client-side `getMopById(id)`  
+    │  └─ Makes HTTP request to `/api/mops/transformer-23a`  
     ▼  
-Express API Route Handler (router.get('/:id'))  
+Express API Route Handler (`router.get('/:id')`)  
     │  
     ▼  
-Server-side getMopById(id)  
+Server-side `getMopById(id)`  
     │  └─ Retrieves data from JSON file/database  
     ▼  
 Data returned to Express route  
@@ -211,13 +211,13 @@ Data returned to Express route
 JSON response sent back to client  
     │  
     ▼  
-Client-side getMopById() resolves with data  
+Client-side `getMopById()` resolves with data  
     │  
     ▼  
 SvelteKit load function returns data  
     │  
     ▼  
-+page.svelte receives data and renders UI
+`+page.svelte` receives data and renders UI
 
 ## Future Enhancements
 
@@ -236,4 +236,4 @@ SvelteKit load function returns data
 
 ## Acknowledgments
 
-- Claude generated the examples for MOPs and templates (in `data.json` and `template.json`) since I have limited field knowledge of what MOPs to add or what the steps for each MOP are`
+- Claude generated the examples for MOPs and templates (in `data.json` and `template.json`) since I have limited field knowledge of what MOPs to add or what the steps for each MOP are
