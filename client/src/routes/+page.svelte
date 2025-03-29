@@ -37,7 +37,10 @@
       <section class="filter-section">
         <div class="section-header">
           <h2>Available MOPs</h2>
-          <a href="/new" class="btn">Create New MOP</a>
+            <div>
+                <a href="/generate" class="btn">Generate New MOP</a>
+                <a href="/new" class="btn">Create New MOP</a>
+            </div>
         </div>
         
         <div class="filter-controls">
