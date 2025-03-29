@@ -39,6 +39,7 @@ A platform for generating, managing, and executing Method of Procedure (MOP) doc
 
 ```
 mop-generator/
+├── assets/                # Images
 ├── client/                # SvelteKit frontend
 │   ├── src/
 │   │   ├── lib/
