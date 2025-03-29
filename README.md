@@ -237,3 +237,4 @@ SvelteKit load function returns data
 ## Acknowledgments
 
 - Claude generated the examples for MOPs and templates (in `data.json` and `template.json`) since I have limited field knowledge of what MOPs to add or what the steps for each MOP are
+- Claude helped with type checking and designing interfaces in the `.model.ts` files
