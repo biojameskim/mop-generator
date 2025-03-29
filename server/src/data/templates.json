@@ -1,0 +1,210 @@
+[
+    {
+      "id": "server-component-replacement",
+      "name": "Server Component Replacement",
+      "description": "Procedure for safely replacing hardware components in a server",
+      "type": "Maintenance",
+      "defaultRiskLevel": "High",
+      "sections": {
+        "baseInfo": {
+          "titleTemplate": "{serverModel} {componentType} Replacement",
+          "documentNumberFormat": "HW-MOP-{id}"
+        },
+        "instructions": [
+          "Ensure proper ESD protection is used throughout the procedure.",
+          "All removed components must be properly labeled and stored.",
+          "Server must be gracefully shut down before hardware replacement."
+        ],
+        "suggestedTools": [
+          { "name": "ESD wrist strap", "required": true },
+          { "name": "ESD mat", "required": true },
+          { "name": "Screwdriver set", "required": true },
+          { "name": "Replacement {componentType}", "required": true }
+        ],
+        "safetyRequirements": [
+          { "description": "Ensure power is disconnected before handling internal components." },
+          { "description": "Use proper lifting techniques when handling servers." },
+          { "description": "Wear ESD protection at all times when handling components." }
+        ],
+        "risks": [
+          { "description": "Data loss if proper shutdown procedures are not followed." },
+          { "description": "Hardware damage if ESD procedures are not followed." }
+        ],
+        "assumptions": [
+          { "description": "All data has been backed up prior to hardware replacement." },
+          { "description": "Appropriate maintenance window has been approved and communicated." },
+          { "description": "Replacement hardware has been tested and confirmed compatible." }
+        ],
+        "baseSteps": [
+          { "number": 1, "description": "Notify monitoring team of planned maintenance." },
+          { "number": 2, "description": "Gracefully shut down the {serverModel} server.", "critical": true },
+          { "number": 3, "description": "Disconnect power cables from the server." },
+          { "number": 4, "description": "Remove server from rack.", "requiresWitness": true },
+          { "number": 5, "description": "Place server on ESD mat and attach ESD wrist strap." },
+          { "number": 6, "description": "Remove server cover according to manufacturer instructions." },
+          { "number": 7, "description": "Locate {componentType} for replacement." },
+          { "number": 8, "description": "Remove {componentType} following proper procedures." },
+          { "number": 9, "description": "Install replacement {componentType}." },
+          { "number": 10, "description": "Verify proper seating/connection of new {componentType}." },
+          { "number": 11, "description": "Replace server cover." },
+          { "number": 12, "description": "Return server to rack." },
+          { "number": 13, "description": "Reconnect power and network cables." },
+          { "number": 14, "description": "Power on server and verify POST completion.", "critical": true },
+          { "number": 15, "description": "Verify all services return to normal operation.", "requiresWitness": true },
+          { "number": 16, "description": "Notify monitoring team of completed maintenance." }
+        ],
+        "conditionalSteps": [
+          {
+            "condition": "isRaidSystem",
+            "steps": [
+              { "number": 16.5, "description": "Verify RAID rebuild has started and is progressing." }
+            ]
+          }
+        ],
+        "backoutSteps": [
+          { "number": 1, "description": "If new hardware fails to function properly, shut down the server." },
+          { "number": 2, "description": "Replace new component with original component if available." },
+          { "number": 3, "description": "If original component is not operational, escalate to vendor support." },
+          { "number": 4, "description": "Document all issues encountered for post-mortem review." }
+        ]
+      },
+      "formFields": [
+        {
+          "id": "serverModel",
+          "label": "Server Model",
+          "type": "select",
+          "options": ["Dell PowerEdge", "HP ProLiant", "Cisco UCS", "IBM", "Custom"],
+          "required": true,
+          "section": "Server Information"
+        },
+        {
+          "id": "componentType",
+          "label": "Component Type",
+          "type": "select",
+          "options": ["CPU", "RAM", "Hard Drive", "SSD", "Power Supply", "Network Card"],
+          "required": true,
+          "section": "Component Details"
+        },
+        {
+          "id": "isRaidSystem",
+          "label": "Does this server use a RAID configuration?",
+          "type": "checkbox",
+          "required": false,
+          "section": "System Configuration"
+        },
+        {
+          "id": "datacenterLocation",
+          "label": "Datacenter Location",
+          "type": "text",
+          "required": true,
+          "section": "Server Information"
+        },
+        {
+          "id": "additionalNotes",
+          "label": "Additional Notes or Special Instructions",
+          "type": "textarea",
+          "required": false,
+          "section": "Additional Information"
+        }
+      ]
+    },
+    {
+      "id": "electrical-maintenance",
+      "name": "Electrical System Maintenance",
+      "description": "Procedure for safely performing maintenance on electrical systems",
+      "type": "Electrical",
+      "defaultRiskLevel": "Medium",
+      "sections": {
+        "baseInfo": {
+          "titleTemplate": "{systemName} Electrical Maintenance",
+          "documentNumberFormat": "ELEC-MOP-{id}"
+        },
+        "instructions": [
+          "This MOP must be performed in its entirety with no deviation.",
+          "Personnel must approach with extreme caution any steps that could have potential impact on critical load.",
+          "A Supervisor must physically witness critical steps.",
+          "Steps with major state changes shall include a time stamp."
+        ],
+        "suggestedTools": [
+          { "name": "PPE", "required": true },
+          { "name": "Insulated Tools", "required": true },
+          { "name": "Multimeter", "required": true },
+          { "name": "Lockout/Tagout Kit", "required": true }
+        ],
+        "safetyRequirements": [
+          { "description": "Hazard Risk Assessment must be completed before procedure." },
+          { "description": "Proper PPE must be worn at all times." },
+          { "description": "Lockout/Tagout procedures must be strictly followed." }
+        ],
+        "risks": [
+          { "description": "Risk of electrical shock, Arc Flash & Burns." },
+          { "description": "Power interruption to critical systems." }
+        ],
+        "assumptions": [
+          { "description": "All critical systems have redundant power pathways." },
+          { "description": "Backup systems are functional and tested." }
+        ],
+        "baseSteps": [
+          { "number": 1, "description": "Perform safety briefing with all personnel involved." },
+          { "number": 2, "description": "Verify current load levels on {systemName}.", "critical": true },
+          { "number": 3, "description": "Notify monitoring team of planned maintenance." },
+          { "number": 4, "description": "Implement Lockout/Tagout procedures on affected equipment.", "requiresWitness": true },
+          { "number": 5, "description": "Verify zero voltage using properly rated multimeter.", "critical": true },
+          { "number": 6, "description": "Perform inspection of {systemName} components." },
+          { "number": 7, "description": "Perform {maintenanceType} maintenance tasks." },
+          { "number": 8, "description": "Document all findings and work performed." },
+          { "number": 9, "description": "Prepare system for re-energization." },
+          { "number": 10, "description": "Remove Lockout/Tagout devices.", "requiresWitness": true },
+          { "number": 11, "description": "Perform controlled re-energization of {systemName}.", "critical": true },
+          { "number": 12, "description": "Verify system operation within normal parameters." },
+          { "number": 13, "description": "Notify monitoring team of completed maintenance." }
+        ],
+        "conditionalSteps": [
+          {
+            "condition": "requiresPartReplacement",
+            "steps": [
+              { "number": 6.5, "description": "Replace defective parts identified during inspection." }
+            ]
+          }
+        ],
+        "backoutSteps": [
+          { "number": 1, "description": "If anomalies occur during re-energization, immediately de-energize system." },
+          { "number": 2, "description": "Re-implement Lockout/Tagout procedures." },
+          { "number": 3, "description": "Notify emergency response team if safety incident occurs." },
+          { "number": 4, "description": "Document all issues encountered." }
+        ]
+      },
+      "formFields": [
+        {
+          "id": "systemName",
+          "label": "Electrical System Name/ID",
+          "type": "text",
+          "required": true,
+          "section": "System Information"
+        },
+        {
+          "id": "maintenanceType",
+          "label": "Maintenance Type",
+          "type": "select",
+          "options": ["Preventative", "Corrective", "Emergency", "Inspection"],
+          "required": true,
+          "section": "Maintenance Details"
+        },
+        {
+          "id": "requiresPartReplacement",
+          "label": "Will parts need to be replaced?",
+          "type": "checkbox",
+          "required": false,
+          "section": "Maintenance Details"
+        },
+        {
+          "id": "voltageLevel",
+          "label": "System Voltage Level",
+          "type": "select",
+          "options": ["Low (<600V)", "Medium (600V-15kV)", "High (>15kV)"],
+          "required": true,
+          "section": "System Information"
+        }
+      ]
+    }
+  ]

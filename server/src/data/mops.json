@@ -108,7 +108,7 @@
       "info": {
         "title": "Server Hardware Component Replacement",
         "documentNumber": "HW-MOP-SERVER-REPLACE",
-        "riskLevel": "Low",
+        "riskLevel": "High",
         "author": {
           "name": "",
           "email": "",
@@ -181,5 +181,85 @@
       ],
       "createdAt": "2024-03-15T09:00:00Z",
       "updatedAt": "2024-03-15T09:00:00Z"
-    }
-  ]
+    },
+    {
+        "id": "server-hardware-installation",
+        "type": "Installation",
+        "info": {
+          "title": "Server Hardware Component Installation",
+          "documentNumber": "HW-MOP-SERVER-INSTALL",
+          "riskLevel": "Medium",
+          "author": {
+            "name": "",
+            "email": "",
+            "mobile": ""
+          }
+        },
+        "instructions": [
+          "This MOP must be performed with proper authorization from IT management.",
+          "Ensure proper ESD protection is used throughout the procedure.",
+          "All removed components must be properly labeled and stored."
+        ],
+        "effects": [
+          {
+            "system": "Production Services",
+            "affected": true,
+            "details": "Specific services hosted on target server will be offline during replacement"
+          },
+          {
+            "system": "Monitoring System",
+            "affected": true,
+            "details": "Target server will show as offline during procedure"
+          }
+        ],
+        "tools": [
+          { "name": "ESD wrist strap", "required": true },
+          { "name": "ESD mat", "required": true },
+          { "name": "Screwdriver set", "required": true },
+          { "name": "Replacement hardware", "required": true },
+          { "name": "Server documentation", "required": true }
+        ],
+        "safetyRequirements": [
+          { "description": "Ensure power is disconnected before handling internal components." },
+          { "description": "Use proper lifting techniques when handling servers." },
+          { "description": "Wear ESD protection at all times when handling components." }
+        ],
+        "risks": [
+          { "description": "Data loss if proper shutdown procedures are not followed." },
+          { "description": "Hardware damage if ESD procedures are not followed." },
+          { "description": "Service disruption beyond planned maintenance window." }
+        ],
+        "assumptions": [
+          { "description": "All data has been backed up prior to hardware replacement." },
+          { "description": "Appropriate maintenance window has been approved and communicated." },
+          { "description": "Replacement hardware has been tested and confirmed compatible." }
+        ],
+        "steps": [
+          { "number": 1, "description": "Notify monitoring team of planned maintenance." },
+          { "number": 2, "description": "Gracefully shut down the target server.", "critical": true },
+          { "number": 3, "description": "Disconnect power cables from the server." },
+          { "number": 4, "description": "Remove server from rack.", "requiresWitness": true },
+          { "number": 5, "description": "Place server on ESD mat and attach ESD wrist strap." },
+          { "number": 6, "description": "Remove server cover according to manufacturer instructions." },
+          { "number": 7, "description": "Locate faulty component for replacement." },
+          { "number": 8, "description": "Remove faulty component." },
+          { "number": 9, "description": "Install replacement component." },
+          { "number": 10, "description": "Verify proper seating/connection of new component." },
+          { "number": 11, "description": "Replace server cover." },
+          { "number": 12, "description": "Return server to rack." },
+          { "number": 13, "description": "Reconnect power and network cables." },
+          { "number": 14, "description": "Power on server and verify POST completion.", "critical": true },
+          { "number": 15, "description": "Verify system boots normally.", "critical": true },
+          { "number": 16, "description": "Verify all services return to normal operation.", "requiresWitness": true },
+          { "number": 17, "description": "Notify monitoring team of completed maintenance." }
+        ],
+        "backoutSteps": [
+          { "number": 1, "description": "If new hardware fails to function properly, shut down the server." },
+          { "number": 2, "description": "Replace new component with original component if available and operational." },
+          { "number": 3, "description": "If original component is not operational, escalate to hardware vendor support." },
+          { "number": 4, "description": "Document all issues encountered for post-mortem review." }
+        ],
+        "createdAt": "2022-03-15T09:00:00Z",
+        "updatedAt": "2023-03-15T09:00:00Z"
+      }
+    ]
