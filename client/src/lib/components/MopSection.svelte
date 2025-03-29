@@ -1,3 +1,5 @@
+<!-- MOPSection is viewing the actual MOP -->
+
 <script lang="ts">
   export let title: string;
 </script>
@@ -7,7 +9,8 @@
     <h3>{title}</h3>
   </div>
   <div class="section-content">
-    <slot></slot>
+    <!-- This is really cool (like props in React... but seems to be better) I can just pass in the content from the MopViewer here. -->
+    <slot></slot> 
   </div>
 </div>
 

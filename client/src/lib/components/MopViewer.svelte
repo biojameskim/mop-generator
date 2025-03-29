@@ -1,3 +1,6 @@
+<!-- MOPViewer is viewing the actual MOP -->
+
+
 <script lang="ts">
     import type { MopModel } from '$lib/models/mop.model';
     import MopSection from './MopSection.svelte';
