@@ -5,7 +5,10 @@ import helmet from 'helmet';
 import compression from 'compression';
 import path from 'path';
 import fs from 'fs';
+
+// Import all routes
 import mopRoutes from './routes/mop.routes';
+import templateRoutes from './routes/template.routes';
 
 // Ensure data directory exists
 const dataDir = path.join(__dirname, 'data');
@@ -38,6 +41,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/mops', mopRoutes);
+app.use('/api/templates', templateRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -45,7 +49,7 @@ app.get('/health', (req, res) => {
 });
 
 // Error handling
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
     message: 'An unexpected error occurred',
