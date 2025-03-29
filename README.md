@@ -44,11 +44,11 @@ mop-generator/
 │   ├── src/
 │   │   ├── lib/
 │   │   │   ├── components/     # Reusable Svelte components
-│   │   │   │   ├── FormField.svelte
-│   │   │   │   ├── FormSection.svelte
-│   │   │   │   ├── MopSection.svelte
-│   │   │   │   ├── MopViewer.svelte
-│   │   │   │   └── TemplateInterface.svelte
+│   │   │   │   ├── FormField.svelte              # Renders the appropriate input type (text, select, etc.)
+│   │   │   │   ├── FormSection.svelte            # Receives a section name, gets all fields (FormFields) for that section
+│   │   │   │   ├── MopSection.svelte             # This is each section within the MOP
+│   │   │   │   ├── MopViewer.svelte              # This is the complete MOP with multiple MopSections
+│   │   │   │   └── TemplateInterface.svelte      # Maintains the overall form data, fetches template data, handles navigation
 │   │   │   ├── models/         # TypeScript interfaces
 │   │   │   │   ├── mop.model.ts
 │   │   │   │   └── template.model.ts
