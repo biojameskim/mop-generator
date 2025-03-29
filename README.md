@@ -187,6 +187,38 @@ This project implements a Method of Procedure (MOP) generator for data center op
 - `GET /api/templates/types/:type` - Get templates by type
 - `POST /api/templates/:id/generate` - Generate a MOP from a template
 
+### API Logic
+Here's how the flow of request/API call/UI rendering should go in the way I implemented it:
+
+Browser URL: /transformer-23a  
+    │  
+    ▼  
+SvelteKit Route Handler (+page.server.ts)  
+    │  
+    ▼  
+Client-side getMopById(id)  
+    │  └─ Makes HTTP request to /api/mops/transformer-23a  
+    ▼  
+Express API Route Handler (router.get('/:id'))  
+    │  
+    ▼  
+Server-side getMopById(id)  
+    │  └─ Retrieves data from JSON file/database  
+    ▼  
+Data returned to Express route  
+    │  
+    ▼  
+JSON response sent back to client  
+    │  
+    ▼  
+Client-side getMopById() resolves with data  
+    │  
+    ▼  
+SvelteKit load function returns data  
+    │  
+    ▼  
++page.svelte receives data and renders UI
+
 ## Future Enhancements
 
 ### Level 2 Enhancements (In Progress)
