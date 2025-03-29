@@ -1,4 +1,3 @@
-// src/lib/services/mop.service.ts
 import type { MopModel } from '$lib/models/mop.model';
 import { browser } from '$app/environment';
 
@@ -6,12 +5,11 @@ import { browser } from '$app/environment';
 const API_BASE_URL = '/api/mops';
 
 function getApiUrl(path: string): string {
-    // In server context, use environment variables
+    // In server context, use environment variables but I'm just gonna use localhost for now
     if (!browser) {
       const apiBase = process.env.API_URL || 'http://localhost:3000';
       return `${apiBase}${path}`;
     }
-    // In browser context, use relative URL
     return path;
   }
 

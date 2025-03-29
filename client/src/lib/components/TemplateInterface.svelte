@@ -7,7 +7,6 @@
     import * as templateService from '$lib/services/template.service';
     
     export let templateId: string;
-    export let onMopGenerated: (mop: MopModel) => void;
     
     let template: MopTemplate | null = null;
     let formData: Record<string, any> = {};
